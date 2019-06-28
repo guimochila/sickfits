@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "next": "^8.1.0",
+    "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
