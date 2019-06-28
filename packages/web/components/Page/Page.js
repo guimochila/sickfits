@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 import Meta from '../Meta';
 
@@ -51,21 +52,23 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class Page extends Component {
-  render() {
-    return (
-      <Fragment>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <StyledPage>
-            <Meta />
-            <Header />
-            <InnerPage>{this.props.children}</InnerPage>
-          </StyledPage>
-        </ThemeProvider>
-      </Fragment>
-    );
-  }
+function Page({ children }) {
+  return (
+    <Fragment>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <StyledPage>
+          <Meta />
+          <Header />
+          <InnerPage>{children}</InnerPage>
+        </StyledPage>
+      </ThemeProvider>
+    </Fragment>
+  );
 }
+
+Page.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Page;
