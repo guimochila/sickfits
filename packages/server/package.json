@@ -3,10 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon -e js,graphql -x node src/index.js",
+    "deploy": "cd prisma && prisma deploy --env-file ../.env"
+  },
   "dependencies": {
     "apollo-server-express": "^2.6.7",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "graphql": "^14.4.1",
-    "graphql-cli": "^3.0.11"
+    "graphql-cli": "^3.0.11",
+    "helmet": "^3.18.0",
+    "merge-graphql-schemas": "^1.5.8",
+    "prisma-binding": "^2.3.15"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
