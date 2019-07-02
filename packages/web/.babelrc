@@ -8,6 +8,7 @@
         "displayName": true,
         "preprocess": false
       }
-    ]
+    ],
+    "@babel/plugin-proposal-class-properties"
   ]
 }

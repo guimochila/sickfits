@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["prettier"],
   "env": {
@@ -19,6 +20,8 @@
       {
         "aspects": ["invalidHref"]
       }
-    ]
+    ],
+    "react/prefer-stateless-function": 0,
+    "react/require-default-props": 0
   }
 }
