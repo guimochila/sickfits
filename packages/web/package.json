@@ -16,6 +16,7 @@
     "apollo-link-http": "^1.5.15",
     "graphql": "^14.4.1",
     "graphql-tag": "^2.10.1",
+    "nanoid": "^2.0.3",
     "next": "^8.1.0",
     "next-with-apollo": "^3.4.0",
     "nprogress": "^0.2.0",
