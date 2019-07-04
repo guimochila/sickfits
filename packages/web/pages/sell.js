@@ -1,5 +1,11 @@
+import CreateItem from '../components/CreateItem';
+
 function Sell() {
-  return <h1>Hello</h1>;
+  return (
+    <div>
+      <CreateItem />
+    </div>
+  );
 }
 
 export default Sell;
