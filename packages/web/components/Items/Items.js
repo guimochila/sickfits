@@ -29,7 +29,7 @@ const ItemsList = styled.div`
   margin: 0 auto;
 `;
 
-function Items() {
+export function Items() {
   return (
     <Center>
       <h1>Items</h1>
@@ -50,5 +50,3 @@ function Items() {
     </Center>
   );
 }
-
-export default Items;

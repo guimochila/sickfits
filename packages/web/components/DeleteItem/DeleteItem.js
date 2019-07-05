@@ -12,7 +12,7 @@ export const DELETE_ITEM_MUTATION = gql`
   }
 `;
 
-class DeleteItem extends Component {
+export class DeleteItem extends Component {
   onDeleteItem = deleteItem => {
     /* eslint-disable-next-line */
     if (confirm('Are you sure you want to delete it?')) {
@@ -52,5 +52,3 @@ DeleteItem.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
 };
-
-export default DeleteItem;
