@@ -6,10 +6,12 @@ type Mutation {
     image: String
     largeImage: String
   ): Item!
+  updateItem(id: ID!, input: UpdateItemInput!): Item!
 }
 
 type Query {
   items: [Item]!
+  item(where: ItemWhereUniqueInput): Item
 }
 
 type Item {
@@ -21,4 +23,14 @@ type Item {
   price: Int!
   createdAt: String!
   updatedAt: String!
+}
+
+input ItemWhereUniqueInput {
+  id: ID
+}
+
+input UpdateItemInput {
+  title: String
+  description: String
+  price: Int
 }
