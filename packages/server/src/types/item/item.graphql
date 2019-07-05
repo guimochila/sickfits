@@ -7,6 +7,7 @@ type Mutation {
     largeImage: String
   ): Item!
   updateItem(id: ID!, input: UpdateItemInput!): Item!
+  deleteItem(id: ID!): Item!
 }
 
 type Query {

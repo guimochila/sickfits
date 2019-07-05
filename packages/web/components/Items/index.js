@@ -1,3 +1,1 @@
-import Items from './Items';
-
-export default Items;
+export * from './Items';
