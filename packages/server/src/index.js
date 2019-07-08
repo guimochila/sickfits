@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const server = require('./createServer');
 
 const app = express();
@@ -13,6 +15,17 @@ app.use(
     origin: process.env.FRONTEND_URL,
   }),
 );
+app.use(cookieParser());
+
+app.use((req, res, next) => {
+  const { _token } = req.cookies;
+
+  if (_token) {
+    const { userId } = jwt.verify(_token, process.env.APP_SECRET);
+    req.userId = userId;
+  }
+  next();
+});
 
 server().applyMiddleware({ app, cors: false });
 
