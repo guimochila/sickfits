@@ -4,6 +4,7 @@ module.exports = {
   Query: {
     items: forwardTo('db'),
     item: forwardTo('db'),
+    itemsConnection: forwardTo('db'),
   },
   Mutation: {
     async createItem(_, args, { db }, info) {
@@ -26,6 +27,14 @@ module.exports = {
         },
         info,
       );
+    },
+    async deleteItem(_, args, { db }, info) {
+      const where = { id: args.id };
+      // Find the Item
+      // const item = await db.query.item({ where }, `{id, title}`);
+      // TODO: Check if the own the Item
+      // Delete Item
+      return db.mutation.deleteItem({ where }, info);
     },
   },
 };

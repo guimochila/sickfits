@@ -1,3 +1,5 @@
+# import * from 'prisma/generated/prisma.graphql'
+
 type Mutation {
   createItem(
     title: String
@@ -7,11 +9,18 @@ type Mutation {
     largeImage: String
   ): Item!
   updateItem(id: ID!, input: UpdateItemInput!): Item!
+  deleteItem(id: ID!): Item!
 }
 
 type Query {
-  items: [Item]!
-  item(where: ItemWhereUniqueInput): Item
+  items(
+    where: ItemWhereInput
+    orderBy: ItemOrderByInput
+    skip: Int
+    first: Int
+  ): [Item]!
+  item(where: ItemWhereInput): Item
+  itemsConnection(where: ItemWhereInput): ItemConnection!
 }
 
 type Item {
@@ -23,10 +32,6 @@ type Item {
   price: Int!
   createdAt: String!
   updatedAt: String!
-}
-
-input ItemWhereUniqueInput {
-  id: ID
 }
 
 input UpdateItemInput {

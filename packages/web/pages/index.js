@@ -1,11 +1,18 @@
-import Items from '../components/Items';
+import PropTypes from 'prop-types';
+import { Items } from '../components/Items';
 
-function Home() {
+function Home({ query }) {
   return (
     <div>
-      <Items />
+      <Items page={parseFloat(query.page) || 1} />
     </div>
   );
 }
+
+Home.propTypes = {
+  query: PropTypes.shape({
+    page: PropTypes.string,
+  }),
+};
 
 export default Home;
