@@ -4,6 +4,7 @@ module.exports = {
   Query: {
     items: forwardTo('db'),
     item: forwardTo('db'),
+    itemsConnection: forwardTo('db'),
   },
   Mutation: {
     async createItem(_, args, { db }, info) {
