@@ -13,7 +13,7 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-function User(props) {
+export function User(props) {
   return (
     <Query {...props} query={CURRENT_USER_QUERY}>
       {payload => props.children(payload)}
@@ -24,5 +24,3 @@ function User(props) {
 User.propTypes = {
   children: PropTypes.func.isRequired,
 };
-
-export default User;
