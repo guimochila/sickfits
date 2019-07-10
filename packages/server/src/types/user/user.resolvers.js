@@ -85,5 +85,10 @@ module.exports = {
       setCookie(res, token);
       return user;
     },
+
+    signout(_, __, { res }) {
+      res.clearCookie('_token');
+      return { message: 'Goodbye!' };
+    },
   },
 };

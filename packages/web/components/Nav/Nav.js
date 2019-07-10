@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import NavStyles from '../styles/NavStyles';
 import { User } from '../User';
+import Signout from '../Signout';
 
 function Nav() {
   return (
@@ -22,6 +23,7 @@ function Nav() {
                 <Link href="/me">
                   <a>Account</a>
                 </Link>
+                <Signout />
               </>
             )}
             {!me && (
