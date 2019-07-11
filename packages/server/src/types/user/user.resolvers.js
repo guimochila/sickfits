@@ -1,3 +1,5 @@
+const { randomBytes } = require('crypto');
+const { promisify } = require('util');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -89,6 +91,66 @@ module.exports = {
     signout(_, __, { res }) {
       res.clearCookie('_token');
       return { message: 'Goodbye!' };
+    },
+
+    async requestReset(_, { email }, { db }) {
+      const user = await db.query.user({ where: { email } });
+
+      if (!user) {
+        throw new Error('Password reset email sent. Please verify your email.');
+      }
+
+      const resetToken = (await promisify(randomBytes)(20)).toString('hex');
+      const resetTokenExpiry = Date.now() * 3600000; // 1 hours from now
+      await db.mutation.updateUser({
+        where: { email },
+        data: {
+          resetToken,
+          resetTokenExpiry,
+        },
+      });
+
+      return {
+        message: 'Password reset email sent. Please verify your email.',
+      };
+    },
+
+    async resetPassword(_, args, { db, res }, info) {
+      const { resetToken, password, confirmPassword } = args;
+
+      if (password !== confirmPassword) {
+        throw new Error('Password and confirm password input does not match.');
+      }
+
+      const [user] = await db.query.users({
+        where: {
+          resetToken,
+          resetTokenExpiry_gte: Date.now() - 360000,
+        },
+      });
+
+      if (!user) {
+        throw new Error('Invalid or expiry token');
+      }
+
+      const newPassword = await bcrypt.hash(password, 10);
+
+      const updatedUser = await db.mutation.updateUser(
+        {
+          where: { email: user.email },
+          data: {
+            password: newPassword,
+            resetToken: null,
+            resetTokenExpiry: null,
+          },
+        },
+        info,
+      );
+
+      const token = generateToken(user.id);
+      setCookie(res, token);
+
+      return updatedUser;
     },
   },
 };
