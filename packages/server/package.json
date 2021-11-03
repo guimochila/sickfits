@@ -21,7 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.5.8",
     "prisma-binding": "^2.3.15",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
